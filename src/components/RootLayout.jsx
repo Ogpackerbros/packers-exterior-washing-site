@@ -36,10 +36,14 @@ function Brand({ invert = false }) {
       href="/"
       aria-label="Home"
       className={clsx(
-        'whitespace-nowrap font-display font-semibold tracking-tight transition',
-        // slightly larger than before
+        // Let it wrap on mobile instead of smashing into buttons
+        'block font-display font-semibold tracking-tight transition leading-tight',
         'text-lg sm:text-xl md:text-2xl',
-        invert ? 'text-white hover:text-neutral-200' : 'text-neutral-950 hover:text-neutral-700',
+        // Keep it from stealing the whole row on mobile
+        'max-w-[70vw] sm:max-w-none',
+        invert
+          ? 'text-white hover:text-neutral-200'
+          : 'text-neutral-950 hover:text-neutral-700',
       )}
     >
       Packers Exterior Washing Services, LLC
@@ -47,27 +51,19 @@ function Brand({ invert = false }) {
   )
 }
 
-function TopQuickLinks({ invert = false }) {
+function QuickLink({ href, children, invert = false }) {
   return (
-    <div className="mt-3 flex flex-wrap items-center gap-2">
-      {/* Home button (obvious, directly under brand) */}
-      <Link
-        href="/"
-        className={clsx(
-          'inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold transition',
-          invert
-            ? 'bg-white/10 text-white hover:bg-white/15'
-            : 'bg-neutral-950 text-white hover:bg-neutral-800',
-        )}
-      >
-        Home
-      </Link>
-
-      {/* Follow buttons right next to Home */}
-      <div className="flex items-center gap-2">
-        <SocialMedia />
-      </div>
-    </div>
+    <Link
+      href={href}
+      className={clsx(
+        'inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold transition',
+        invert
+          ? 'bg-white/10 text-white hover:bg-white/15'
+          : 'bg-neutral-950 text-white hover:bg-neutral-800',
+      )}
+    >
+      {children}
+    </Link>
   )
 }
 
@@ -81,38 +77,52 @@ function Header({
 }) {
   return (
     <Container>
-      <div className="flex items-start justify-between gap-x-6">
-        {/* Left side: Brand + Home/Facebook/Google row */}
-        <div className="min-w-0">
+      {/* Mobile: stacked. Desktop: single row. */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+        {/* Row 1: Brand + actions */}
+        <div className="flex items-start justify-between gap-4 sm:flex-1 sm:items-center">
           <Brand invert={invert} />
-          <TopQuickLinks invert={invert} />
+
+          <div className="flex items-center gap-3 sm:gap-4">
+            <Button href="/contact" className="whitespace-nowrap">
+              Get a quote
+            </Button>
+
+            <button
+              ref={toggleRef}
+              type="button"
+              onClick={onToggle}
+              aria-expanded={expanded ? 'true' : 'false'}
+              aria-controls={panelId}
+              className={clsx(
+                'group -m-2.5 rounded-full p-2.5 transition',
+                invert ? 'hover:bg-white/10' : 'hover:bg-neutral-950/10',
+              )}
+              aria-label="Toggle navigation"
+            >
+              <Icon
+                className={clsx(
+                  'h-6 w-6',
+                  invert
+                    ? 'fill-white group-hover:fill-neutral-200'
+                    : 'fill-neutral-950 group-hover:fill-neutral-700',
+                )}
+              />
+            </button>
+          </div>
         </div>
 
-        {/* Right side: CTA + hamburger */}
-        <div className="flex shrink-0 items-center gap-x-4 sm:gap-x-6">
-          <Button href="/contact">Get a quote</Button>
-
-          <button
-            ref={toggleRef}
-            type="button"
-            onClick={onToggle}
-            aria-expanded={expanded ? 'true' : 'false'}
-            aria-controls={panelId}
-            className={clsx(
-              'group -m-2.5 rounded-full p-2.5 transition',
-              invert ? 'hover:bg-white/10' : 'hover:bg-neutral-950/10',
-            )}
-            aria-label="Toggle navigation"
-          >
-            <Icon
-              className={clsx(
-                'h-6 w-6',
-                invert
-                  ? 'fill-white group-hover:fill-neutral-200'
-                  : 'fill-neutral-950 group-hover:fill-neutral-700',
-              )}
-            />
-          </button>
+        {/* Row 2: Quick links under brand (always visible, clean on mobile) */}
+        <div className="flex flex-wrap gap-2 sm:justify-end">
+          <QuickLink href="/" invert={invert}>
+            Home
+          </QuickLink>
+          <QuickLink href="/facebook" invert={invert}>
+            Facebook
+          </QuickLink>
+          <QuickLink href="/google" invert={invert}>
+            Google Business
+          </QuickLink>
         </div>
       </div>
     </Container>
@@ -124,7 +134,6 @@ function NavigationItem({ href, children }) {
     <Link
       href={href}
       className={clsx(
-        // Make them feel like 4 real buttons/cards
         'group relative flex items-center justify-center',
         'rounded-3xl border border-white/10',
         'bg-white/5 px-6 py-12',
@@ -233,7 +242,7 @@ function RootLayoutInner({ children }) {
               />
             </div>
 
-            {/* The new “4 button” nav */}
+            {/* The “4 button” nav */}
             <Navigation />
 
             {/* Bottom info area */}
