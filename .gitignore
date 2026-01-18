@@ -2,3 +2,9 @@ node_modules
 node_modules/
 .next
 node_modules
+
+# ignore local/build stuff
+node_modules
+.next
+.DS_Store
+.env*
