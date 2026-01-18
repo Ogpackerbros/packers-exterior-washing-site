@@ -36,11 +36,9 @@ function Brand({ invert = false }) {
       href="/"
       aria-label="Home"
       className={clsx(
-        // Let it wrap on mobile instead of smashing into buttons
-        'block font-display font-semibold tracking-tight transition leading-tight',
-        'text-lg sm:text-xl md:text-2xl',
-        // Keep it from stealing the whole row on mobile
-        'max-w-[70vw] sm:max-w-none',
+        'whitespace-nowrap font-display font-semibold tracking-tight transition',
+        // slightly larger brand everywhere
+        'text-base sm:text-lg md:text-xl',
         invert
           ? 'text-white hover:text-neutral-200'
           : 'text-neutral-950 hover:text-neutral-700',
@@ -51,19 +49,39 @@ function Brand({ invert = false }) {
   )
 }
 
-function QuickLink({ href, children, invert = false }) {
+function QuickLinks({ invert = false, className }) {
+  // NOTE: Put your real URLs here if they’re different.
+  const facebookUrl = 'https://www.facebook.com/'
+  const googleBusinessUrl = 'https://www.google.com/'
+
+  const basePill =
+    'inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold transition'
+  const pill = invert
+    ? 'bg-white/10 text-white hover:bg-white/15'
+    : 'bg-neutral-950 text-white hover:bg-neutral-800'
+
   return (
-    <Link
-      href={href}
-      className={clsx(
-        'inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold transition',
-        invert
-          ? 'bg-white/10 text-white hover:bg-white/15'
-          : 'bg-neutral-950 text-white hover:bg-neutral-800',
-      )}
-    >
-      {children}
-    </Link>
+    <div className={clsx('flex flex-wrap gap-3', className)}>
+      <Link href="/" className={clsx(basePill, pill)}>
+        Home
+      </Link>
+      <a
+        href={facebookUrl}
+        target="_blank"
+        rel="noreferrer"
+        className={clsx(basePill, pill)}
+      >
+        Facebook
+      </a>
+      <a
+        href={googleBusinessUrl}
+        target="_blank"
+        rel="noreferrer"
+        className={clsx(basePill, pill)}
+      >
+        Google Business
+      </a>
+    </div>
   )
 }
 
@@ -77,52 +95,47 @@ function Header({
 }) {
   return (
     <Container>
-      {/* Mobile: stacked. Desktop: single row. */}
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-        {/* Row 1: Brand + actions */}
-        <div className="flex items-start justify-between gap-4 sm:flex-1 sm:items-center">
+      <div className="flex items-start justify-between gap-x-6">
+        <div className="min-w-0">
           <Brand invert={invert} />
 
-          <div className="flex items-center gap-3 sm:gap-4">
-            <Button href="/contact" className="whitespace-nowrap">
-              Get a quote
-            </Button>
-
-            <button
-              ref={toggleRef}
-              type="button"
-              onClick={onToggle}
-              aria-expanded={expanded ? 'true' : 'false'}
-              aria-controls={panelId}
-              className={clsx(
-                'group -m-2.5 rounded-full p-2.5 transition',
-                invert ? 'hover:bg-white/10' : 'hover:bg-neutral-950/10',
-              )}
-              aria-label="Toggle navigation"
-            >
-              <Icon
-                className={clsx(
-                  'h-6 w-6',
-                  invert
-                    ? 'fill-white group-hover:fill-neutral-200'
-                    : 'fill-neutral-950 group-hover:fill-neutral-700',
-                )}
-              />
-            </button>
-          </div>
+          {/* ✅ MOBILE FIX:
+              - On WHITE header (invert=false): HIDE these pills on mobile to avoid overlap.
+              - On DARK panel (invert=true): SHOW them (this is your dropdown). */}
+          {invert ? (
+            <QuickLinks invert className="mt-4" />
+          ) : (
+            <QuickLinks
+              className="mt-4 hidden sm:flex"
+              // hidden on mobile, shows on >= sm if you want them visible on desktop
+            />
+          )}
         </div>
 
-        {/* Row 2: Quick links under brand (always visible, clean on mobile) */}
-        <div className="flex flex-wrap gap-2 sm:justify-end">
-          <QuickLink href="/" invert={invert}>
-            Home
-          </QuickLink>
-          <QuickLink href="/facebook" invert={invert}>
-            Facebook
-          </QuickLink>
-          <QuickLink href="/google" invert={invert}>
-            Google Business
-          </QuickLink>
+        <div className="flex items-center gap-x-4 sm:gap-x-6">
+          <Button href="/contact">Get a quote</Button>
+
+          <button
+            ref={toggleRef}
+            type="button"
+            onClick={onToggle}
+            aria-expanded={expanded ? 'true' : 'false'}
+            aria-controls={panelId}
+            className={clsx(
+              'group -m-2.5 rounded-full p-2.5 transition',
+              invert ? 'hover:bg-white/10' : 'hover:bg-neutral-950/10',
+            )}
+            aria-label="Toggle navigation"
+          >
+            <Icon
+              className={clsx(
+                'h-6 w-6',
+                invert
+                  ? 'fill-white group-hover:fill-neutral-200'
+                  : 'fill-neutral-950 group-hover:fill-neutral-700',
+              )}
+            />
+          </button>
         </div>
       </div>
     </Container>
@@ -242,10 +255,8 @@ function RootLayoutInner({ children }) {
               />
             </div>
 
-            {/* The “4 button” nav */}
             <Navigation />
 
-            {/* Bottom info area */}
             <div className="relative bg-neutral-950 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-white/10">
               <Container>
                 <div className="grid grid-cols-1 gap-y-10 pt-10 pb-16 sm:grid-cols-2 sm:pt-16">
