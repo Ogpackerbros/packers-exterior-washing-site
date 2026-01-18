@@ -99,6 +99,21 @@ function Header({
         <div className="min-w-0">
           <Brand invert={invert} />
 
+          {/* Mobile-only: Get a quote pill under the brand */}
+<div className="mt-4 sm:hidden">
+  <Link
+    href="/contact"
+    className={clsx(
+      'inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold transition',
+      invert
+        ? 'bg-white/10 text-white hover:bg-white/15'
+        : 'bg-neutral-950 text-white hover:bg-neutral-800',
+    )}
+  >
+    Get a quote
+  </Link>
+</div>
+
           {/* ✅ MOBILE FIX:
               - On WHITE header (invert=false): HIDE these pills on mobile to avoid overlap.
               - On DARK panel (invert=true): SHOW them (this is your dropdown). */}
@@ -113,30 +128,33 @@ function Header({
         </div>
 
         <div className="flex items-center gap-x-4 sm:gap-x-6">
-          <Button href="/contact">Get a quote</Button>
+  {/* Desktop button stays on the right */}
+  <div className="hidden sm:block">
+    <Button href="/contact">Get a quote</Button>
+  </div>
 
-          <button
-            ref={toggleRef}
-            type="button"
-            onClick={onToggle}
-            aria-expanded={expanded ? 'true' : 'false'}
-            aria-controls={panelId}
-            className={clsx(
-              'group -m-2.5 rounded-full p-2.5 transition',
-              invert ? 'hover:bg-white/10' : 'hover:bg-neutral-950/10',
-            )}
-            aria-label="Toggle navigation"
-          >
-            <Icon
-              className={clsx(
-                'h-6 w-6',
-                invert
-                  ? 'fill-white group-hover:fill-neutral-200'
-                  : 'fill-neutral-950 group-hover:fill-neutral-700',
-              )}
-            />
-          </button>
-        </div>
+  <button
+    ref={toggleRef}
+    type="button"
+    onClick={onToggle}
+    aria-expanded={expanded ? 'true' : 'false'}
+    aria-controls={panelId}
+    className={clsx(
+      'group -m-2.5 rounded-full p-2.5 transition',
+      invert ? 'hover:bg-white/10' : 'hover:bg-neutral-950/10',
+    )}
+    aria-label="Toggle navigation"
+  >
+    <Icon
+      className={clsx(
+        'h-6 w-6',
+        invert
+          ? 'fill-white group-hover:fill-neutral-200'
+          : 'fill-neutral-950 group-hover:fill-neutral-700',
+      )}
+    />
+  </button>
+</div>
       </div>
     </Container>
   )
