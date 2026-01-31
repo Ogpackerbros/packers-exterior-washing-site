@@ -185,6 +185,7 @@ function Navigation() {
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <NavigationItem href="/services">Services</NavigationItem>
+          <NavigationItem href="/service-areas">Service Areas</NavigationItem>
           <NavigationItem href="/work">Our Work</NavigationItem>
           <NavigationItem href="/process">Our Process</NavigationItem>
           <NavigationItem href="/contact">Get a Quote</NavigationItem>
