@@ -12,6 +12,7 @@ import { Footer } from '@/components/Footer'
 import { GridPattern } from '@/components/GridPattern'
 import { Offices } from '@/components/Offices'
 import { SocialMedia } from '@/components/SocialMedia'
+import { LocalBusinessSchema } from '@/components/LocalBusinessSchema'
 
 function XIcon(props) {
   return (
@@ -51,8 +52,8 @@ function Brand({ invert = false }) {
 
 function QuickLinks({ invert = false, className }) {
   // NOTE: Put your real URLs here if they’re different.
-  const facebookUrl = 'https://www.facebook.com/'
-  const googleBusinessUrl = 'https://www.google.com/'
+  const facebookUrl = 'https://www.facebook.com/61582899135478/'
+  const googleBusinessUrl = 'https://www.google.com/search?ibp=gwp;0,7&q=Packer%E2%80%99s+Exterior+Washing+Services&ludocid=3121780479986020788&lsig=AB86z5XyP82MSuPQODzsbipoMPhE#lkt=LocalPoiReviews&lpg=cid:CgIgAQ%3D%3D'
 
   const basePill =
     'inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold transition'
@@ -312,7 +313,7 @@ function RootLayoutInner({ children }) {
           />
 
           <main className="w-full flex-auto">{children}</main>
-
+<LocalBusinessSchema />
           <Footer />
         </motion.div>
       </motion.div>

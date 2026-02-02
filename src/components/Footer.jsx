@@ -64,6 +64,14 @@ export function Footer() {
                     Get a Quote
                   </Link>
                 </li>
+                <li>
+  <Link
+    className="text-neutral-600 hover:text-neutral-950"
+    href="/disclaimer"
+  >
+    Disclaimer
+  </Link>
+</li>
               </ul>
             </div>
 
