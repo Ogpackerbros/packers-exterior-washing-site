@@ -19,6 +19,45 @@ export const metadata = {
     'Professional commercial pressure washing in Williamsport and Central PA. Storefronts, offices, apartments, sidewalks, and parking areas.',
 }
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What commercial properties do you service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We service storefronts, office buildings, apartment complexes, parking areas, and other commercial properties."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can pressure washing be done outside business hours?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We offer flexible scheduling, including early morning or off-hours service to minimize disruption."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is commercial pressure washing insured?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We are fully insured to protect both your property and our team during service."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should commercial properties be cleaned?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cleaning frequency depends on foot traffic and exposure, but many commercial properties benefit from quarterly or biannual service."
+      }
+    }
+  ]
+}
+
 function WhyItMatters() {
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
@@ -313,6 +352,10 @@ function CTA() {
 export default function CommercialPressureWashingPage() {
   return (
     <RootLayout>
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+/>
       <Container className="mt-12 sm:mt-16">
         <FadeIn>
           <Link

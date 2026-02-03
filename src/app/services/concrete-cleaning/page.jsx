@@ -19,6 +19,45 @@ export const metadata = {
     'Professional concrete cleaning in Williamsport and Central PA. Driveways, sidewalks, patios, and pool decks pressure washed to look like new.',
 }
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can pressure washing remove oil stains from concrete?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oil stains can often be significantly lightened or removed using professional cleaning solutions and hot or surface washing, depending on how long the stain has set."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What concrete surfaces do you clean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We clean driveways, sidewalks, patios, pool decks, and other residential or commercial concrete surfaces."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is pressure washing safe for concrete?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, when done correctly. We use commercial-grade equipment and proper techniques to clean effectively without surface damage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does concrete cleaning last?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Concrete typically stays clean for 1–2 years, depending on traffic, drainage, and environmental exposure."
+      }
+    }
+  ]
+}
+
 function WhyProfessional() {
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
@@ -305,6 +344,10 @@ function CTA() {
 export default function ConcreteCleaningPage() {
   return (
     <RootLayout>
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+/>
       <Container className="mt-12 sm:mt-16">
         <FadeIn>
           <Link

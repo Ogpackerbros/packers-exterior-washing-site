@@ -19,6 +19,45 @@ export const metadata = {
     'Professional house washing and soft wash services in Williamsport and Central PA. Safe cleaning for vinyl, brick, stucco, and more. Free estimates.',
 }
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is house washing safe for vinyl siding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Our house washing process uses low pressure and specialized detergents that safely clean vinyl siding without forcing water behind panels."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does house washing remove?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "House washing removes mold, mildew, algae, dirt, pollen, and environmental buildup that can discolor siding over time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should a house be washed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most homes benefit from house washing every 1–2 years, especially in shaded or high-moisture areas common in Central Pennsylvania."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you wash gutters and soffits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Our house washing service includes cleaning soffits, fascia, and exterior gutter faces to restore a uniform appearance."
+      }
+    }
+  ]
+}
+
 function WhySection() {
   return (
     <div className="mt-24 rounded-4xl bg-neutral-950 py-24 sm:mt-32 lg:mt-40 lg:py-32">
@@ -233,6 +272,10 @@ function CTA() {
 export default function HouseWashingPage() {
   return (
     <RootLayout>
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+/>
       <Container className="mt-12 sm:mt-16">
         <FadeIn>
           <Link

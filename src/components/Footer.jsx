@@ -36,19 +36,18 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    className="text-neutral-600 hover:text-neutral-950"
-                    href="/services"
-                  >
+                  <Link className="text-neutral-600 hover:text-neutral-950" href="/services">
                     Services
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    className="text-neutral-600 hover:text-neutral-950"
-                    href="/process"
-                  >
+                  <Link className="text-neutral-600 hover:text-neutral-950" href="/process">
                     Process
+                  </Link>
+                </li>
+                <li>
+                  <Link className="text-neutral-600 hover:text-neutral-950" href="/faq">
+                    FAQs
                   </Link>
                 </li>
                 <li>
@@ -57,21 +56,15 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    className="text-neutral-600 hover:text-neutral-950"
-                    href="/contact"
-                  >
+                  <Link className="text-neutral-600 hover:text-neutral-950" href="/contact">
                     Get a Quote
                   </Link>
                 </li>
                 <li>
-  <Link
-    className="text-neutral-600 hover:text-neutral-950"
-    href="/disclaimer"
-  >
-    Disclaimer
-  </Link>
-</li>
+                  <Link className="text-neutral-600 hover:text-neutral-950" href="/disclaimer">
+                    Disclaimer
+                  </Link>
+                </li>
               </ul>
             </div>
 

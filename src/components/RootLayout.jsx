@@ -189,6 +189,7 @@ function Navigation() {
           <NavigationItem href="/service-areas">Service Areas</NavigationItem>
           <NavigationItem href="/work">Our Work</NavigationItem>
           <NavigationItem href="/process">Our Process</NavigationItem>
+          <NavigationItem href="/faq">FAQs</NavigationItem>
           <NavigationItem href="/contact">Get a Quote</NavigationItem>
         </div>
       </div>

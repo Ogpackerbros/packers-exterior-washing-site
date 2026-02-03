@@ -19,6 +19,45 @@ export const metadata = {
     'Professional deck and fence cleaning in Williamsport and Central PA. Restore wood and composite surfaces before staining or just to look new again.',
 }
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is deck cleaning safe for wood?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We use appropriate pressure levels and cleaning solutions to safely remove buildup without damaging wood fibers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you clean composite decking?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Composite decking requires a different cleaning approach, and we adjust our process to match manufacturer recommendations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I seal my deck after cleaning?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In many cases, sealing after cleaning helps extend the life of wood decks by protecting against moisture and UV damage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of fences do you clean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We clean wood, vinyl, and composite fences to remove algae, dirt, and weather-related staining."
+      }
+    }
+  ]
+}
+
 function WhyItMatters() {
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
@@ -301,6 +340,10 @@ function CTA() {
 export default function DeckFenceCleaningPage() {
   return (
     <RootLayout>
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+/>
       <Container className="mt-12 sm:mt-16">
         <FadeIn>
           <Link

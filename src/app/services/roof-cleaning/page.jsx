@@ -19,6 +19,45 @@ export const metadata = {
     'Professional roof cleaning in Williamsport and Central PA. Safe low-pressure soft wash removes black streaks, algae, and moss without damaging shingles.',
 }
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is roof cleaning safe for shingles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We use a low-pressure soft wash system designed specifically for roofing materials. It safely removes algae and staining without damaging shingles or voiding manufacturer warranties."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does roof cleaning last?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most roof cleanings last between 2–4 years in Central Pennsylvania, depending on shade, moisture, and surrounding tree coverage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What causes black streaks on roofs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Black streaks are caused by algae that feeds on roofing materials. They are not dirt and require proper treatment to remove and prevent regrowth."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you use pressure washing on roofs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. High-pressure washing can damage roofing materials. We use a soft wash process that cleans thoroughly without risk."
+      }
+    }
+  ]
+}
+
 function ProblemSection() {
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
@@ -318,6 +357,10 @@ function CTA() {
 export default function RoofCleaningPage() {
   return (
     <RootLayout>
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+/>
       <Container className="mt-12 sm:mt-16">
         <FadeIn>
           <Link
